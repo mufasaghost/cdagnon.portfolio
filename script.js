@@ -1,9 +1,18 @@
-// Navigation menu highlighting
+// Navigation scroll
+
 const navLinks = document.querySelectorAll('nav a');
 
 navLinks.forEach(link => {
-  link.addEventListener('click', () => {
-    navLinks.forEach(l => l.classList.remove('active'));
-    link.classList.add('active');
-  })
+  link.addEventListener('click', smoothScroll);
 })
+
+function smoothScroll(e) {
+  e.preventDefault();
+  
+  const targetId = e.target.getAttribute('href');
+  const target = document.querySelector(targetId);
+  target.scrollIntoView({
+    behavior: 'smooth'
+  });
+}
+
